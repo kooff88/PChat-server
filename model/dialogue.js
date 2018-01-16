@@ -1,0 +1,50 @@
+// 消息体
+module.exports = function(sequelize,DataTypes){
+  return sequelize.define('dialogue',{
+    render_id:{
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      references:{
+        model:"admin_account"
+      },
+      comment:"发送者ID"
+    },
+    dialog_id:{
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      references:{
+        model:"dialog"
+      },
+      defaultValue:0,
+      comment:"关联会话ID"
+    },
+    msg_type:{
+      type:DataTypes.INTEGER(1),
+      allowNull:false,
+      defaultValue:0,
+      comment:"消息类型；0:未知消息；1:消息； 2:图片"
+    },
+    content:{
+      type:DataTypes.STRING(300),
+      allowNull:false,
+      comment:'消息内容'
+    },
+    read:{
+      type:DataTypes.INTEGER(1),
+      allowNull:false,
+      defaultValue:0,
+      comment:'是否已读；0:未设置；1:接受者已读；2:接受者未读'
+    },
+    deleted:{
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      defaultValue:0,
+      comment:"删除一条消息：0：未删除；1:发送者已删除；2:接受者已删除；3:发送者／接受者都已删除；"
+    }
+  },{
+    comment:"会话消息体",
+    updatedAt:'update_at',
+    createdAt:'create_at',
+    freezeTableName:true
+  })
+}

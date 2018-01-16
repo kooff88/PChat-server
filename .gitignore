@@ -1,0 +1,10 @@
+node_modules
+log/*
+public/img/*
+
+.DS_Store
+*.log
+*.pid
+*.swp
+*.vim
+.vscode
